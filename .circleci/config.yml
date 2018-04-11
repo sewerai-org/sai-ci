@@ -30,7 +30,7 @@ jobs:
           docker push mqarty/docker-firebase:$TAG
 workflows:
   version: 2
-  deploy_and_deploy:
+  build_deploy_image:
     jobs:
-      - build_deploy_image:
+      - build:
           context: Docker
