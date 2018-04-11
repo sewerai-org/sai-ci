@@ -28,3 +28,9 @@ jobs:
           docker build -t mqarty/docker-firebase:$TAG .      # (4)
           docker login -u $DOCKER_USER -p $DOCKER_PASS         # (5)
           docker push mqarty/docker-firebase:$TAG
+workflows:
+  version: 2
+  deploy_and_deploy:
+    jobs:
+      - build_deploy_image:
+          context: Docker
