@@ -1,0 +1,4 @@
+awscli
+boto3
+environs==6.0.0
+PyYAML
