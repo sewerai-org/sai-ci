@@ -6,4 +6,4 @@
 VERSION=$(sentry-cli releases propose-version) 
 
 if [ "${CIRCLE_BRANCH}" = "master" ]; then sentry-cli releases deploys $VERSION new -e prod; fi
-if [ "${CIRCLE_BRANCH}" = "develop" ]; then sentry-cli releases deploys $VERSION new -e ${CIRCLE_BRANCH}; fi
+if [ "${CIRCLE_BRANCH}" = "develop" ]; then sentry-cli releases deploys $VERSION new -e dev; fi

@@ -3,6 +3,7 @@
 # Assumes you're in a git repository and have the required env vars;
 #    SENTRY_AUTH_TOKEN
 #    SENTRY_ORG
+#    SENTRY_PROJECT
 VERSION=$(sentry-cli releases propose-version) 
 
 # Create a release
