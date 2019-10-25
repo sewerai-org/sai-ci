@@ -3,7 +3,9 @@ import boto3
 import logging
 import logging.handlers
 import yaml
-
+# Ignore ! in yaml. This is only looking for plugins
+# and not trying to parse the entire document.
+yaml.add_multi_constructor('!', lambda loader, suffix, node: None)
 
 from environs import Env
 
@@ -14,21 +16,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-
 env = Env()
 key_id = env('SSM_KEY_ID')
 aws_region = env('AWS_DEFAULT_REGION')
 
 
-def get_service_name():
+def load_serverless_yml():
     try:
         with open("serverless.yml", "r+") as f:
             yml = yaml.load(f, Loader=yaml.FullLoader)
-            return yml['service']
+            return yml
     except IOError:
         print("This command can only be run in a Serverless service directory")
 
-
+def get_service_name():
+    yml = load_serverless_yml()
+    return yml['service']
+    
 def get_output_value(service_name, stage, key):
     client = boto3.client(
         'cloudformation',
