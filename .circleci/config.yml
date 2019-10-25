@@ -1,20 +1,23 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.5.0
-# executors:
-#   docker_build:
-#     machine:
-#       docker_layer_caching: true
+
+executors:
+  python_executor:
+    resource_class: small
+    docker:
+      - image: circleci/python:3.7
 
 workflows:
   build-deploy-and-tag:
     jobs:
       - aws-ecr/build-and-push-image:
-          # executor: docker_build
           repo: "${CIRCLE_PROJECT_USERNAME}/${ECR_REPONAME}"
           region: AWS_DEFAULT_REGION
           tag: "latest,${CIRCLE_SHA1}"
           context: AWS-SERVERLESS-PRODUCTION
+          executor: python_executor
+          setup-remote-docker: trues          
           filters:
             branches:
               only:
