@@ -17,7 +17,7 @@ workflows:
           tag: "latest,${CIRCLE_SHA1}"
           context: AWS-SERVERLESS-PRODUCTION
           executor: python_executor
-          setup-remote-docker: trues          
+          setup-remote-docker: true          
           filters:
             branches:
               only:
