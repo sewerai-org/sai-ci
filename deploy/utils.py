@@ -3,9 +3,6 @@ import boto3
 import logging
 import logging.handlers
 import yaml
-# Ignore ! in yaml. This is only looking for plugins
-# and not trying to parse the entire document.
-yaml.add_multi_constructor('!', lambda loader, suffix, node: None)
 
 from environs import Env
 
@@ -22,9 +19,13 @@ aws_region = env('AWS_DEFAULT_REGION')
 
 
 def load_serverless_yml():
+    # Ignore ! in yaml. Currenly only looking for a few fields
+    # and not trying to parse the entire document.
+    yaml.add_multi_constructor('!', lambda loader, suffix, node: None)
+
     try:
         with open("serverless.yml", "r+") as f:
-            yml = yaml.load(f, Loader=yaml.FullLoader)
+            yml = yaml.load(f, Loader=yaml.Loader)
             return yml
     except IOError:
         print("This command can only be run in a Serverless service directory")
