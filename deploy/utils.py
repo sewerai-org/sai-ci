@@ -30,10 +30,12 @@ def load_serverless_yml():
     except IOError:
         print("This command can only be run in a Serverless service directory")
 
+
 def get_service_name():
     yml = load_serverless_yml()
     return yml['service']
-    
+
+
 def get_output_value(service_name, stage, key):
     client = boto3.client(
         'cloudformation',

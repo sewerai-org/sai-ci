@@ -2,6 +2,8 @@ FROM python:3.7
 
 RUN apt-get update
 
+RUN apt-get install -y postgresql-client
+
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
