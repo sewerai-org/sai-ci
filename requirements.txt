@@ -1,4 +1,6 @@
 awscli
 boto3
 environs==6.0.0
+psycopg2
 PyYAML
+ssm-parameter-store
