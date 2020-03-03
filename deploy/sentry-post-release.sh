@@ -5,6 +5,5 @@
 #    SENTRY_ORG
 VERSION=$(sentry-cli releases propose-version) 
 
-# TODO: refactor... master > prod, develop > dev
 if [ "${CIRCLE_BRANCH}" = "master" ]; then sentry-cli releases deploys $VERSION new -e prod; fi
 if [ "${CIRCLE_BRANCH}" = "develop" ]; then sentry-cli releases deploys $VERSION new -e dev; fi
