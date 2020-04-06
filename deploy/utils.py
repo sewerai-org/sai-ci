@@ -36,6 +36,16 @@ def get_service_name():
     return yml['service']
 
 
+def get_plugin_verion(plugin):
+    yml = load_serverless_yml()
+    custom = yml['custom']
+    plugins_version = custom['plugins_version']
+    for p in plugins_version:
+        if p == plugin:
+            return plugins_version[p]
+    return 'latest'
+
+
 def get_output_value(service_name, stage, key):
     client = boto3.client(
         'cloudformation',
