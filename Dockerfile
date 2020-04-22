@@ -1,8 +1,9 @@
 FROM python:3.7
 
-RUN apt-get update
-
-RUN apt-get install -y postgresql-client
+RUN apt -y update
+RUN apt install -y mdbtools
+RUN apt install -y postgresql-client
+RUN pip install --upgrade pip 
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
