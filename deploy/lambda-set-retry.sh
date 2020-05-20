@@ -3,6 +3,7 @@
 ENV='';
 if [ "${CIRCLE_BRANCH}" = "master" ]; then ENV='prod'; fi
 if [ "${CIRCLE_BRANCH}" = "develop" ]; then ENV='dev'; fi
+if [ "${CIRCLE_BRANCH}" = "nassco" ]; then ENV='nassco'; fi
 
 for service in "cort-${ENV}-api" "cort-${ENV}-tasker" "cort-${ENV}-worker"
 do
