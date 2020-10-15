@@ -84,4 +84,4 @@ COPY . .
 RUN chmod +x deploy/*
 
 # Install latest working SLS release
-RUN yarn global add serverless@1.79.0
+RUN yarn global add serverless@1.80.0
