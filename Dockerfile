@@ -72,7 +72,7 @@ RUN yarn global add firebase-admin@latest
 RUN yarn global add firebase-functions@latest
 
 # install Serverless
-RUN yarn global add serverless@latest
+RUN yarn global add serverless@1.83.0
 
 # install Sentry CLI
 RUN curl -sL https://sentry.io/get-cli/ | bash
